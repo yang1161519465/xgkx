@@ -1,0 +1,17 @@
+globalConfig:
+  outputDir: C:\project\ideaproject\system
+  author: 杨旭晨
+  entityName: %
+  mapperName: %Mapper
+  xmlName: %Mapper
+  serviceName: %Service
+  serviceImpName: %ServiceImpl
+  controllerName: %Controller
+dataSourceConfig:
+  url: jdbc:mysql://127.0.0.1:3306/myproject?characterEncoding=UTF-8
+  username: root
+  password: yxc132528
+  driverName: com.mysql.jdbc.Driver
+packageInfo:
+  parent: com.yxc.system
+  moduleName: test

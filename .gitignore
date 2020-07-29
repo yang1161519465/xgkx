@@ -1,3 +1,5 @@
 vueTemplate/node_modules
 vueTemplate/dist
 vueTemplate/build
+system/.idea
+system/target

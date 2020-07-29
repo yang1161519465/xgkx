@@ -1,0 +1,22 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/xgkx?characterEncoding=UTF-8
+    username: root
+    password: yxc132528
+    driver-class-name: com.mysql.jdbc.Driver
+  http:
+    encoding:
+      force-response: true
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb
+server:
+  port: 3500
+  context-path: /project
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml  #相对于resource目录的路径
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  #打印sql语句 和 查询结果
