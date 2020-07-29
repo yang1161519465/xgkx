@@ -3,7 +3,7 @@
  * @Date: 2020-07-28 09:32:10
  * @Descripttion: 用户信息表单
  * @LastEditors: 杨旭晨
- * @LastEditTime: 2020-07-29 08:22:28
+ * @LastEditTime: 2020-07-29 17:29:35
 -->
 <template>
   <div class="user-form">
@@ -20,7 +20,7 @@
         <el-input v-model="data.id" :disabled="true" clearable />
       </el-form-item>
       <el-form-item label="用户名" prop="username">
-        <el-input v-model="data.username" clearable />
+        <el-input v-model="data.username" clearable :disabled="operation === 'edit'" />
       </el-form-item>
       <el-form-item label="姓名" prop="name">
         <el-input v-model="data.name" clearable />
@@ -35,7 +35,7 @@
         <el-input v-model="data.className" clearable />
       </el-form-item>
       <el-form-item label="学号" prop="studentNum">
-        <el-input v-model="data.studentNum" clearable />
+        <el-input v-model="data.studentNum" clearable :disabled="operation === 'edit'" />
       </el-form-item>
       <el-form-item label="邮箱" prop="email">
         <el-input v-model="data.email" clearable />
@@ -73,28 +73,36 @@ export default {
       if (value === '') {
         callback(new Error('请输入用户名'))
       } else {
-        UserApi.checkUsername(value).then(res => {
-          console.log('res: ', res)
-          if (res.code === -1) {
-            callback(new Error('用户名已存在'))
-          } else {
-            callback()
-          }
-        })
+        if (this.operation === 'edit') {
+          callback()
+        } else {
+          UserApi.checkUsername(value).then(res => {
+            console.log('res: ', res)
+            if (res.code === -1) {
+              callback(new Error('用户名已存在'))
+            } else {
+              callback()
+            }
+          })
+        }
       }
     }
     var checkStuNum = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入学号'))
       } else {
-        UserApi.checkStuNum(value).then(res => {
-          console.log('res: ', res)
-          if (res.code === -1) {
-            callback(new Error('学号已存在'))
-          } else {
-            callback()
-          }
-        })
+        if (this.operation === 'edit') {
+          callback()
+        } else {
+          UserApi.checkStuNum(value).then(res => {
+            console.log('res: ', res)
+            if (res.code === -1) {
+              callback(new Error('学号已存在'))
+            } else {
+              callback()
+            }
+          })
+        }
       }
     }
     return {
